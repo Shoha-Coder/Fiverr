@@ -5,6 +5,7 @@ import reducer, {initialState} from "@/context/StateReducers"
 import '@/styles/globals.css'
 import Head from "next/head"
 import {useRouter} from "next/router"
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App({Component, pageProps}) {
     const router = useRouter()
@@ -18,6 +19,7 @@ export default function App({Component, pageProps}) {
                 <Navbar/>
                 <div className={`mb-auto mx-auto ${router.pathname !== "/" ? "mt-36" : ""} p200:min-w-[320px] ${hidden}`}>
                     <Component {...pageProps} />
+                    <Analytics />
                 </div>
                 <Footer/>
             </div>
