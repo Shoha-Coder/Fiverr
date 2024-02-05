@@ -3,13 +3,13 @@ const nextConfig = {
   output: "export",
   reactStrictMode: true,
   env: {
-    SERVER_URL: "https://fiverr-back.onrender.com",
+    SERVER_URL: "https://fiverr-back.shoha-coder.uz",
   },
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "fiverr-back.onrender.com",
+        hostname: "fiverr-back.shoha-coder.uz",
       },
     ],
     unoptimized: true,
