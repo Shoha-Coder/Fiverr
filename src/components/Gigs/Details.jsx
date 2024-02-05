@@ -28,11 +28,11 @@ const Details = () => {
   return (
     <>
       {gigData && currentImage !== "" && (
-        <div className="col-span-2 flex flex-col gap-3 p200:mx-4 p411:mx-12">
+        <div className="col-span-2 flex flex-col gap-3">
           <h2 className="text-2xl font-bold text-[#404145] mb-1">
             {gigData.title}
           </h2>
-          <div className="p411:flex items-center gap-5">
+          <div className="flex items-center gap-2">
             <div>
               {gigData.createdBy.profileImage ? (
                 <Image
@@ -40,7 +40,7 @@ const Details = () => {
                   alt="profile"
                   height={30}
                   width={30}
-                  className="rounded-full p580:block p200:hidden"
+                  className="rounded-full"
                 />
               ) : (
                 <div className="bg-purple-500 h-10 w-10 flex items-center justify-center rounded-full relative">
@@ -77,8 +77,8 @@ const Details = () => {
               <Image
                 src={HOST + "/uploads/" + currentImage}
                 alt="Gig"
-                height={350}
-                width={700}
+                height={1000}
+                width={1000}
                 className="hover:scale-110 transition-all duration-500"
               />
             </div>
@@ -93,7 +93,7 @@ const Details = () => {
                     key={image}
                     onClick={() => setCurrentImage(image)}
                     className={`${currentImage === image ? "" : "blur-sm"
-                      } cursor-pointer transition-all duration-500 h-[90px] p200:m-auto p364:m-0`}
+                      } cursor-pointer transition-all duration-500 h-[90px]`}
                   />
                 ))}
             </div>
@@ -171,4 +171,4 @@ const Details = () => {
   );
 }
 
-export default Details
+export default Details;

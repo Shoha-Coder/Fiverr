@@ -25,7 +25,7 @@ function Search() {
   return (
     <>
       {gigs && (
-        <div className="p450:mx-24 p200:ml-10 mr-14 mb-24">
+        <div className="mx-24 mr-14 mb-24">
           {q && (
             <h3 className="text-4xl mb-10">
               Results for <strong>{q}</strong>
@@ -37,7 +37,7 @@ function Search() {
                 {gigs.length} services available
               </span>
             </div>
-            <div className="p200:grid p200:grid-cols-1 p680:grid-cols-2 p952:grid-cols-3 p200:gap-5 p1200:grid-cols-4 p200:mx-auto p1600:grid-cols-5">
+            <div className="p200:grid p200:grid-cols-2 p922:grid-cols-3 p200:gap-5 p1200:grid-cols-4 p1600:grid-cols-5">
               {gigs.map((gig) => (
                 <SearchGridItem gig={gig} key={gig.id} />
               ))}

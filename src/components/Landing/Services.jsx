@@ -8,10 +8,10 @@ function Services() {
 
     return (
         <div className="my-16 ">
-            <h2 className="p200:text-xl p400:text-2xl p450:text-3xl p500:text-4xl mb-10 text-[#404145] font-bold p200:text-center">
+            <h2 className="text-4xl mb-10 text-[#404145] font-bold p200:text-center">
                 You need it, we&apos;ve got it
             </h2>
-            <ul className="grid p200:grid-cols-1 gap-10 p1150:grid-cols-5 p500:grid-cols-2 px-5 p710:grid-cols-3">
+            <ul className="grid p200:grid-cols-3 gap-10 p1150:grid-cols-5">
                 {categories.map(({ name, logo }) => {
                     return (
                         <li

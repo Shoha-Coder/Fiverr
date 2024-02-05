@@ -6,7 +6,6 @@ import { useCookies } from "react-cookie";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { CREATE_ORDER } from "@/utils/constants";
-import {useStateProvider} from "@/context/StateContext";
 
 const stripePromise = loadStripe("pk_test_51Nshc6F5vapQAG2ifSHIl7uYLB6sVKtM7G1CTiCEyRPpZrCiXu2IgRXD8cLZ9nPIKcqOyrwnVSGtLSpmvQ0e5vIY00OhZIGDZJ");
 
@@ -14,7 +13,6 @@ export default function App() {
   const [clientSecret, setClientSecret] = useState("");
   const [cookies] = useCookies()
   const router = useRouter()
-  const [{userInfo}] = useStateProvider()
   const { gigId } = router.query
 
   useEffect(() => {
@@ -37,7 +35,6 @@ export default function App() {
     if (gigId) {
       createOrder()
     }
-    !userInfo ? router.push("/") : ""
   }, [gigId])
 
   useEffect(() => {
@@ -61,7 +58,7 @@ export default function App() {
 
 
   return (
-    <div className="min-h-[80vh] max-w-full  flex flex-col gap-10 items-center">
+    <div className="min-h-[80vh] max-w-full mx-20 flex flex-col gap-10 items-center">
       <h1 className="text-3xl">
         Please Complete the payment to place the order
       </h1>

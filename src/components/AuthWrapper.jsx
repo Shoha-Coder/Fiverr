@@ -23,11 +23,11 @@ const AuthWrapper = ({ type }) => {
         const {
           data: { user, jwt },
         } = await axios.post(
-            type === "login" ? LOGIN_ROUTE : SIGNUP_ROUTE,
-            { email, password },
-            {
+          type === "login" ? LOGIN_ROUTE : SIGNUP_ROUTE,
+          { email, password },
+          {
             headers: {
-              Authorization: `Bearer ${cookies.jwt}`
+
             }
           }
         )
@@ -46,7 +46,7 @@ const AuthWrapper = ({ type }) => {
     <div className='fixed top-0 z-[100] rounded-sm min-w-full left-0 right-0 bottom-0'>
       <div className="backdrop-blur-md relative h-full p-[auto] top-0 -z-[1]" id='blur-div'>
         <div className='pt-[400px] flex flex-col justify-center items-center'>
-          <div className="fixed z-[101] h-max p200:w-[90%] p450:w-auto bg-white flex flex-col justify-center items-center rounded-md" id='auth modal'>
+          <div className="fixed z-[101] h-max bg-white flex flex-col justify-center items-center rounded-md" id='auth modal'>
             <div className="flex flex-col justify-center items-center p-8 gap-7">
               <div className="flex items-center h-[40px] justify-between">
                 <h3 className='text-2xl font-semibold to-slate-700'>{type === "login" ? "Login To Fiverr" : "Signup to Fiverr"}</h3>
@@ -55,10 +55,10 @@ const AuthWrapper = ({ type }) => {
               </div>
               <div className="flex flex-col gap-5">
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   placeholder='Email'
-                  className='border border-slate-300 p-3 w-80 focus:outline-none bg-white max-p450:w-[100%] max-p450:mx-auto'
+                  className='border border-slate-300 p-3 w-80 focus:outline-none bg-white'
                   value={values.email.toLowerCase()}
                   onChange={handleChange}
                   required
@@ -67,12 +67,12 @@ const AuthWrapper = ({ type }) => {
                   type="password"
                   name="password"
                   placeholder='Password'
-                  className='border border-slate-300 p-3 w-80 focus:outline-none bg-white max-p450:w-[100%] max-p450:mx-auto'
+                  className='border border-slate-300 p-3 w-80 focus:outline-none bg-white'
                   value={values.password}
                   onChange={handleChange}
                   required
                 />
-                <button type='submit' className='bg-[#1dbf73] text-white px-12 text-lg font-semibold rounded-md focus:outline-none p-3 w-80 max-p450:w-[100%] max-p450:mx-auto' onClick={handleClick}>Continue</button>
+                <button type='submit' className='bg-[#1dbf73] text-white px-12 text-lg font-semibold rounded-md focus:outline-none p-3 w-80' onClick={handleClick}>Continue</button>
               </div>
             </div>
             <div className="py-5 w-full flex items-center justify-center border-t border-r-slate-400">

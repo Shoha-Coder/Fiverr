@@ -20,19 +20,17 @@ function Orders() {
         console.error(err);
       }
     };
-    if (userInfo) {
-      getOrders()
-    }
+    if (userInfo) getOrders();
   }, [userInfo]);
 
   console.log(orders)
   return (
-    <div className="min-h-[80vh] my-10 mt-0 p500:px-24 mx-auto px-auto">
-      <h3 className="text-2xl font-semibold mx-auto mb-10 ml-12">All your Orders</h3>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg p200:w-[90%] mx-auto ">
-        <table className="w-full text-sm text-left text-gray-500 p200:w-[90%]">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 p200:w-[100%]">
-            <tr className="text-gray-700 uppercase bg-gray-50 p200:text-[5px] p1089:text-xs p200:w-[90%]">
+    <div className="min-h-[80vh] my-10 mt-0 px-24">
+      <h3 className="m-5 text-2xl font-semibold">All your Orders</h3>
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left text-gray-500">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr className="text-gray-700 uppercase bg-gray-50 p200:text-[8px] p1089:text-xs">
               <th scope="col" className="p200:px-3 p1089:px-6 py-3">
                 Order Id
               </th>
@@ -60,7 +58,7 @@ function Orders() {
             {orders.map((order) => {
               return (
                 <tr
-                  className="bg-white hover:bg-gray-50 p200:text-[6px] p1089:text-xs"
+                  className="bg-white hover:bg-gray-50 p200:text-[9px] p1089:text-xs"
                   key={order.id}
                 >
                   <th scope="row" className="px-6 py-4">

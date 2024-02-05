@@ -5,12 +5,10 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import {useRouter} from "next/router";
 
 function UnreadMessages() {
   const [cookies] = useCookies()
   const [{ userInfo }] = useStateProvider();
-  const router = useRouter()
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     const getUnreadMessages = async () => {

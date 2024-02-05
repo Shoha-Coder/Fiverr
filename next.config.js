@@ -1,18 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
+  output: 'export',
   reactStrictMode: true,
   env: {
-    SERVER_URL: "https://fiverr-back.shoha-coder.uz",
+    SERVER_URL: "http://fiverr-back.shoha-coder.uz",
   },
   images: {
     remotePatterns: [
       {
-        protocol: "https",
+        protocol: "http",
         hostname: "fiverr-back.shoha-coder.uz",
+        port: "3001",
       },
     ],
-    unoptimized: true,
+    unoptimized: true
   },
+  
 };
-module.exports = nextConfig;
+
+module.exports = nextConfig;  

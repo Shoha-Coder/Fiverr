@@ -5,7 +5,7 @@ import FiverrLogo from "../FiverrLogo";
 
 function FiverrBusiness() {
     return (
-        <div className="bg-[#0d084d] p400:px-20 py-16 flex gap-10 p200:pl-12">
+        <div className="bg-[#0d084d] px-20 py-16 flex gap-10">
             <div className="text-white flex flex-col gap-6 justify-center items-start ">
                 <div className="flex gap-2">
                     <FiverrLogo fillColor={"#ffffff"} />
@@ -35,14 +35,14 @@ function FiverrBusiness() {
                     </li>
                 </ul>
                 <button
-                    className="border text-base font-medium px-5 py-2 border-[#1DBF73] bg-[#1DBF73] text-white rounded-md"
+                    className="border text-base font-medium px-5 py-2   border-[#1DBF73] bg-[#1DBF73] text-white rounded-md"
                     type="button"
                 >
                     Explore Fiverr Business
                 </button>
             </div>
             <div className="relative h-[512px] w-2/3">
-                <Image src="/business.webp" objectFit="contain" width={900} className="p200:hidden  p1150:block p1150:mt-[90px] p1396:mt-0" height={250} alt="bsiness" />
+                <Image src="/business.webp" width={900} className="p200:opacity-0  p1150:opacity-100 p1150:mt-[90px] p1396:mt-0" height={250} alt="bsiness" />
             </div>
         </div>
     );

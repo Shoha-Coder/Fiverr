@@ -5,13 +5,11 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
-import {useStateProvider} from "@/context/StateContext";
 
 const GigId = () => {
     const [cookies] = useCookies()
     const router = useRouter()
     const { gigid } = router.query
-    const [{userInfo}] = useStateProvider()
     const [files, setFile] = useState([])
     const [features, setFeatures] = useState([])
     const [data, setData] = useState({
@@ -26,7 +24,7 @@ const GigId = () => {
     });
 
     const handleChange = (e) => {
-        setData({ ...data, [e.target.name] : e.target.value });
+        setData({ ...data, [e.target.name]: e.target.value });
     }
     const addFeature = () => {
         if (data.feature) {
@@ -94,7 +92,6 @@ const GigId = () => {
             }
         }
         fetchGigData()
-        !userInfo ? router.push("/") : ""
     }, [gigid])
     const inputClassName =
         "block p-4 w-full text-sm text-gray-900 border border-gray-300 focus:outline-none rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
@@ -161,7 +158,7 @@ const GigId = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-11">
                     <div>
-                        <label htmlFor="delivery" className={labelClassName}>Gig delivery ( Day )</label>
+                        <label htmlFor="delivery" className={labelClassName}>Gig delivery</label>
                         <input
                             type="number"
                             name="time"

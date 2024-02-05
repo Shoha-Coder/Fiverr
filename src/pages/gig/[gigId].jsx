@@ -30,7 +30,6 @@ function  GigsPage() {
     if (gigId) fetchGigData();
   }, [gigId, dispatch]);
 
-
   useEffect(() => {
     const checkGigOrdered = async () => {
       const {
@@ -46,10 +45,9 @@ function  GigsPage() {
     if (userInfo) {
       checkGigOrdered();
     }
-    !userInfo ? router.push("/") : ""
   }, [dispatch, gigId, userInfo]);
   return (
-    <div className="grid p200:grid-cols-1 p1150:grid-cols-3 p1150:gap-5 p1288:gap-24">
+    <div className="grid p200:grid-cols-2 p1182:grid-cols-3 mx-32 gap-20">
       <Details />
       <Pricing />
     </div>

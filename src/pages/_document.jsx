@@ -13,7 +13,7 @@ export default function Document() {
               `,
         }} />
       </Head>
-      <body>
+      <body className={`p200:min-w-[800px]`}>
         <Main />
         <NextScript />
       </body>

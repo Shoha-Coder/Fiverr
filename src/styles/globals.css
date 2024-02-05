@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+input:focus, textarea:focus, select:focus, button:focus{
+  outline: none;
+}
 ::-webkit-scrollbar {
   width: 8px;
 }

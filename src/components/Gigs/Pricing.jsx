@@ -4,15 +4,20 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
 import { useStateProvider } from "@/context/StateContext";
 import { useRouter } from "next/router";
-import Link from "next/link";
 function Pricing() {
   const [{ gigData, userInfo }, dispatch] = useStateProvider();
   const router = useRouter();
-
+  const handleCheckout = () => {
+    if(userInfo) {
+      router.push(`/checkout?gigId=${gigData.id}`)
+    } else {
+      router.push("/")
+    }
+  }
   return (
     <>
       {gigData && (
-        <div className="sticky top-36 mb-10 h-max ">
+        <div className="sticky top-36 mb-10 h-max w-96">
           <div className="border p-10 flex flex-col gap-5">
             <div className="flex justify-between">
               <h4 className="text-md font-normal text-[#74767e]">
@@ -51,21 +56,14 @@ function Pricing() {
               </button>
             ) : (
               <button
-                className="flex items-center bg-[#1DBF73] text-white py-2 justify-center font-bold text-lg relative rounded"
-                onClick={() => router.push(`/checkout?gigId=${gigData.id}`)}
+                className={`flex items-center bg-[#1DBF73] text-white py-2 justify-center font-bold text-lg relative rounded ${userInfo ? "" : "blur-[1px]"}`}
+                onClick={handleCheckout}
               >
                 <span>Continue</span>
                 <BiRightArrowAlt className="text-2xl absolute right-4" />
               </button>
             )}
           </div>
-          {/* {gigData.userId !== userInfo.id && (
-            <div className="flex items-center justify-center mt-5">
-              <Link href={`http://localhost:3000//profiles/${gigData.createdBy.id}`} className=" w-5/6 hover:bg-[#74767e] py-1 border border-[#74767e] px-5 text-[#6c6d75] hover:text-white transition-all duration-300 text-lg rounded font-bold">
-                Contact Me
-              </Link>
-            </div>
-          )} */}
         </div>
       )}
     </>

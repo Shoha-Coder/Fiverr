@@ -1,86 +1,118 @@
 import Image from "next/image";
-import {useRouter} from "next/router";
-import React, {useEffect, useState} from "react";
-import {IoSearchOutline} from "react-icons/io5";
-
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { IoSearchOutline } from "react-icons/io5";
 function HeroBanner() {
     const router = useRouter();
     const [image, setImage] = useState(1);
     const [searchData, setSearchData] = useState("");
-    const Popular = [
-        {
-            name: "Website Design",
-            route: "/search?q=website design",
-            clasName: "text-sm py-1 px-3 border rounded-full hover:bg-white hover:text-black transition-all duration-300 cursor-pointer"
-        },
-        {
-            name: "Wordpress",
-            route: "/search?q=wordpress",
-            clasName: "text-sm py-1 px-3 border rounded-full hover:bg-white hover:text-black transition-all duration-300 cursor-pointer"
-        },
-        {
-            name: "Logo Design",
-            route: "/search?q=logo design",
-            clasName: "text-sm py-1 px-3 border rounded-full hover:bg-white hover:text-black transition-all duration-300 cursor-pointer"
-        },
-        {
-            name: "AI Services",
-            route: "/search?q=ai services",
-            clasName: "text-sm py-1 px-3 border rounded-full hover:bg-white hover:text-black transition-all duration-300 cursor-pointer"
-        }
-    ]
+    useEffect(() => {
+        const interval = setInterval(
+            () => setImage(image >= 6 ? 1 : image + 1),
+            10000
+        );
+        return () => clearInterval(interval);
+    }, [image]);
+
     return (
         <div className="h-[680px] relative bg-cover">
             <div className="absolute top-0 right-0 w-[100%] h-full transition-opacity z-0">
-                {[1, 2, 3, 4, 5, 6].map((index) => (
-                    <Image
-                        key={index}
-                        alt="hero"
-                        src={`/bg-hero${index}.webp`}
-                        fill
-                        className={`${image === index ? "opacity-100" : "opacity-0"}
-                transition-all duration-100 img object-cover p200:object-[-950px] lg:object-[-500px] p839:object-[-550px] p1288:object-[-300px] p1440:object-top absolute`}
-                    />
-                ))}
+                <Image
+                    alt="hero"
+                    src="/bg-hero1.webp"
+                    fill
+                    className={`${image === 1 ? "opacity-100" : "opacity-0"
+                        } transition-all duration-1000 img object-cover p200:object-[-750px] minn:object-[-500px] p1288:object-[-300px] maxn:object-top absolute`}
+                />
+                <Image
+                    alt="hero"
+                    src="/bg-hero2.webp"
+                    fill
+                    className={`${image === 2 ? "opacity-100" : "opacity-0"
+                        } transition-all duration-1000 img object-cover p200:object-[-750px] minn:object-[-500px] p1288:object-[-300px] maxn:object-top absolute`}
+                />
+                <Image
+                    alt="hero"
+                    src="/bg-hero3.webp"
+                    fill
+                    className={`${image === 3 ? "opacity-100" : "opacity-0"
+                        } transition-all duration-1000 img object-cover p200:object-[-750px] minn:object-[-500px] p1288:object-[-300px] maxn:object-top absolute`}
+                />
+                <Image
+                    alt="hero"
+                    src="/bg-hero4.webp"
+                    fill
+                    className={`${image === 4 ? "opacity-100" : "opacity-0"
+                        } transition-all duration-1000 img object-cover p200:object-[-750px] minn:object-[-500px] p1288:object-[-300px] maxn:object-top absolute`}
+                />
+                <Image
+                    alt="hero"
+                    src="/bg-hero5.webp"
+                    fill
+                    className={`${image === 5 ? "opacity-100" : "opacity-0"
+                        } transition-all duration-1000 img object-cover p200:object-[-750px] minn:object-[-500px] p1288:object-[-300px] maxn:object-top absolute`}
+                />
+                <Image
+                    alt="hero"
+                    src="/bg-hero6.webp"
+                    fill
+                    className={`${image === 6 ? "opacity-100" : "opacity-0"
+                        } transition-all duration-1000 img object-cover p200:object-[-750px] minn:object-[-500px] p1288:object-[-300px] maxn:object-top absolute`}
+                />
             </div>
-            <div
-                className="z-10 relative p200:mx-auto lg:left-[-190px] p200:top-[160px] lg:top-0 p1440:left-[-340px] p200:w-full p710:w-[650px] flex justify-center flex-col h-full gap-5 ml-20">
-                <h1 className="text-white text-5xl ml-10 max-lg:hidden">
+            <div className="z-10 relative p200:mx-auto minn:left-[-190px] p200:top-[160px] minn:top-0 maxn:left-[-340px] w-[650px] flex justify-center flex-col h-full gap-5 ml-20">
+                <h1 className="p200:opacity-0 minn:opacity-100 text-white text-5xl">
                     Find the perfect&nbsp;
                     <i>freelance</i>
-                    <br/>
+                    <br />
                     services for your business
                 </h1>
-                <div className="p600:flex p200:block align-center items-center mt-10 mx-auto">
+                <div className="flex align-middle">
                     <div className="relative">
-                        <IoSearchOutline className="absolute text-gray-500 text-2xl flex align-middle h-full left-2"/>
+                        <IoSearchOutline className="absolute text-gray-500 text-2xl flex align-middle h-full left-2" />
                         <input
                             type="text"
-                            className="h-14 p600:w-[450px] p200:w-[300px] pl-10 rounded-md p600:rounded-r-none"
+                            className="h-14 w-[450px] pl-10 rounded-md rounded-r-none text-gray focus:outline-none"
                             placeholder={`Try "building mobile app`}
                             value={searchData}
                             onChange={(e) => setSearchData(e.target.value)}
                         />
                     </div>
                     <button
-                        className="bg-[#1DBF73] text-white px-12 text-lg font-semibold p600:rounded-l-none p200:rounded-md h-14 p200:w-[300px] p600:w-[auto] p200:mt-[15px] p600:mt-0"
+                        className="bg-[#1DBF73] px-12 text-lg font-semibold rounded-r-md text-white"
                         onClick={() => router.push(`/search?q=${searchData}`)}
                     >
                         Search
                     </button>
                 </div>
-                <div className="text-white gap-4 p200:hidden p600:flex p600:mx-auto">
+                <div className="text-white flex gap-4">
                     Popular:
-                    {
-                        Popular.map((search) => {
-                            return (
-                                <ul className="flex gap-5" key={search.name}>
-                                    <li className={search.clasName}
-                                        onClick={() => router.push(search.route)}>{search.name}</li>
-                                </ul>
-                            )
-                        })
-                    }
+                    <ul className="flex gap-5">
+                        <li
+                            className="text-sm py-1 px-3 border rounded-full hover:bg-white hover:text-black transition-all duration-300	cursor-pointer"
+                            onClick={() => router.push("/search?q=website design")}
+                        >
+                            Website Design
+                        </li>
+                        <li
+                            className="text-sm py-1 px-3 border rounded-full hover:bg-white hover:text-black transition-all duration-300	cursor-pointer"
+                            onClick={() => router.push("/search?q=wordpress")}
+                        >
+                            Wordpress
+                        </li>
+                        <li
+                            className="text-sm py-1 px-3 border rounded-full hover:bg-white hover:text-black transition-all duration-300	cursor-pointer"
+                            onClick={() => router.push("/search?q=logo design")}
+                        >
+                            Logo Design
+                        </li>
+                        <li
+                            className="text-sm py-1 px-3 border rounded-full hover:bg-white hover:text-black transition-all duration-300	cursor-pointer"
+                            onClick={() => router.push("/search?q=ai services")}
+                        >
+                            AI Services
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

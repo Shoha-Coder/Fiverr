@@ -4,13 +4,11 @@ import { categories } from "@/utils/categories";
 import { ADD_GIG_ROUTE } from "@/utils/constants";
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
-import {useStateProvider} from "@/context/StateContext";
 
 function CreateGigs() {
     const [cookies] = useCookies();
-    const [{userInfo}] = useStateProvider()
     const router = useRouter();
     const inputClassName =
         "block p-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50  focus:ring-blue-500 focus:border-blue-500";
@@ -81,19 +79,15 @@ function CreateGigs() {
                 router.push("/seller/gigs");
             }
         }
-
     };
-    useEffect(() => {
-        !userInfo ? router.push("/") : ""
-    }, [])
     return (
-        <div className="min-h-[80vh] my-10 mt-0 p200:px-6 p899:px-32">
+        <div className="min-h-[80vh] my-10 mt-0 px-32">
             <h1 className="text-6xl text-gray-900 mb-5">Create a new Gig</h1>
             <h3 className="text-3xl text-gray-900 mb-5">
                 Enter the details to create the gig
             </h3>
             <form action="" className="flex flex-col gap-5 mt-10">
-                <div className="grid p200:grid-cols-1 p899:grid-cols-2 gap-11">
+                <div className="grid grid-cols-2 gap-11">
                     <div>
                         <label htmlFor="title" className={labelClassName}>
                             Gig Title
@@ -141,9 +135,9 @@ function CreateGigs() {
                         onChange={handleChange}
                     ></textarea>
                 </div>
-                <div className="grid p200:grid-cols-1 p899:grid-cols-2 gap-11">
+                <div className="grid grid-cols-2 gap-11">
                     <div>
-                        <label htmlFor="delivery">Delivery Time ( Day )</label>
+                        <label htmlFor="delivery">Delivery Time</label>
                         <input
                             type="number"
                             className={inputClassName}
@@ -169,12 +163,12 @@ function CreateGigs() {
                         />
                     </div>
                 </div>
-                <div className="grid p200:grid-cols-1 p899:grid-cols-2 gap-11">
+                <div className="grid grid-cols-2 gap-11">
                     <div>
                         <label htmlFor="features" className={labelClassName}>
                             Features
                         </label>
-                        <div className="p400:flex p200:block gap-3 items-center mb-5">
+                        <div className="flex gap-3 items-center mb-5">
                             <input
                                 type="text"
                                 id="features"
@@ -220,7 +214,7 @@ function CreateGigs() {
                         </div>
                     </div>
                 </div>
-                <div className="grid p200:grid-cols-1 p899:grid-cols-2 gap-11">
+                <div className="grid grid-cols-2 gap-11">
                     <div>
                         <label htmlFor="shortDesc" className={labelClassName}>
                             Short Description
@@ -252,7 +246,7 @@ function CreateGigs() {
                 </div>
                 <div>
                     <button
-                        className="border text-lg font-semibold px-5 py-3 border-[#1DBF73] bg-[#1DBF73] text-white rounded-md w-full"
+                        className="border text-lg font-semibold px-5 py-3 border-[#1DBF73] bg-[#1DBF73] text-white rounded-md"
                         type="button"
                         onClick={addGig}
                     >

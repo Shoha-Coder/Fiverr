@@ -56,23 +56,25 @@ function MessageContainer() {
   };
   return (
     <div className="h-[80vh] min-w-[90%]">
-      <div className="max-h-[80vh] flex flex-col justify-center items-center p200:min-w-[320px] p500:min-w-[500px] p600:min-w-[750x] p710:min-w-[710px] p1150:min-w-[1150px]">
+      <div className="max-h-[80vh] flex flex-col justify-center items-center">
         <div className="bg-white py-8 px-4 shadow-2xl sm:rounded-lg sm:px-10 min-w-[80%] mx-auto border flex flex-col">
           <div className="mt-8">
-              <div className="space-y-4 h-[50vh] overflow-y-auto pr-4 min-w-[100%]">
+            <div className="space-y-4 h-[50vh] overflow-y-auto pr-4 ">
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex ${message.senderId === userInfo.id
-                    ? "justify-end"
-                    : "justify-start"
-                    }`}
+                  className={`flex ${
+                    message.senderId === userInfo.id
+                      ? "justify-end"
+                      : "justify-start"
+                  }`}
                 >
                   <div
-                    className={`inline-block rounded-lg ${message.senderId === userInfo.id
-                      ? "bg-[#1DBF73] text-white"
-                      : "bg-gray-100 text-gray-800"
-                      } px-4 py-2 max-w-xs break-all`}
+                    className={`inline-block rounded-lg ${
+                      message.senderId === userInfo.id
+                        ? "bg-[#1DBF73] text-white"
+                        : "bg-gray-100 text-gray-800"
+                    } px-4 py-2 max-w-xs break-all`}
                   >
                     <p>{message.text}</p>
                     <span className="text-sm text-gray-600">

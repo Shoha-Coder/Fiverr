@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const JoinFiverr = () => {
     return (
-        <div className=' my-16 relative'>
+        <div className='mx-32 my-16 relative'>
             <div className="absolute z-10 top-1/3 left-10">
                 <h4 className="text-white-text-5xl mb-10 text-white">
                     Suddently it&apos;s all so <i>doable.</i>

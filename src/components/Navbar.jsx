@@ -12,8 +12,6 @@ import { GET_USER_INFO, HOST } from '@/utils/constants';
 import { reducerCases } from '@/context/constants';
 import Image from 'next/image';
 import ContextMenu from './ContextMenu';
-import { RxHamburgerMenu } from "react-icons/rx";
-import BurgerUsr from "@/components/BurgerUsr";
 
 const Navbar = () => {
     const router = useRouter()
@@ -57,9 +55,17 @@ const Navbar = () => {
             setIsFixed(true);
         }
     }, [router.pathname]);
+    const links = [
+        { linkName: "Fiverr Business", handler: "#", type: "link" },
+        { linkName: "Explore", handler: "#", type: "link" },
+        { linkName: "English", handler: "#", type: "link" },
+        { linkName: "Become a Seller", handler: "#", type: "link" },
+        { linkName: "Sign in", handler: handleLogin, type: "button" },
+        { linkName: "Join", handler: handleSignup, type: "button2" },
+    ];
 
     useEffect(() => {
-        if (cookies.jwt && !userInfo) {
+        if (cookies.jwt &&  !userInfo) {
             const getUserInfo = async () => {
                 try {
                     const {
@@ -84,7 +90,7 @@ const Navbar = () => {
                     })
                     setIsLoaded(true)
                     if (user.isProfileInfoSet === false) {
-                        await router.push("/profile")
+                        router.push("/profile")
                     }
                 } catch (err) {
                     console.log(err);
@@ -109,118 +115,41 @@ const Navbar = () => {
             window.removeEventListener("click", clickListener);
         };
     }, [isContextMenuVisible]);
-    const handleOrdersNavigate = async () => {
-        if (isSeller) await router.push("/seller/orders");
-        else await router.push("/buyer/orders")
-    }
     const ContextMenuData = [
         {
             name: "Profile",
-            callback: async (e) => {
+            callback: (e) => {
                 e.stopPropagation();
 
                 setIsContextMenuVisible(false);
-                await router.push("/profile");
+                router.push("/profile");
             },
-            clas: ""
         },
         {
             name: "Logout",
-            callback: async (e) => {
+            callback: (e) => {
                 e.stopPropagation();
 
                 setIsContextMenuVisible(false);
-                await router.push("/logout");
+                router.push("/logout");
             },
-            clas: ""
-        },
-        {
-            name: "Orders",
-            callback: async (e) => {
-                e.stopPropagation();
-
-                setIsContextMenuVisible(false);
-                await router.push(isSeller ? "/seller/orders" : "/buyer/orders");
-            },
-            clas: "p394:hidden"
-        },
-        {
-            name: (isSeller ? "Switch to buyer" : "Switch to seller"),
-            callback: async (e) => {
-                e.stopPropagation();
-
-                setIsContextMenuVisible(false);
-                if (isSeller) {
-                    dispatch({ type: reducerCases.SWITCH_MODE });
-                    await router.push("/buyer/orders");
-                } else {
-                    dispatch({ type: reducerCases.SWITCH_MODE });
-                    await router.push("/seller");
-                }
-            },
-            clas: "p394:hidden"
         },
     ];
-    const [isBurgerUsrVisible, setIsBurgerUsrVisible] = useState(false);
-    useEffect(() => {
-        const clickListener = (e) => {
-            e.stopPropagation();
 
-            if (isBurgerUsrVisible) setIsBurgerUsrVisible(false);
-        };
-        if (isBurgerUsrVisible) {
-            window.addEventListener("click", clickListener);
-        }
-        return () => {
-            window.removeEventListener("click", clickListener);
-        };
-    }, [isBurgerUsrVisible]);
-    const links = [
-        { linkName: "Fiverr Business", handler: "#", type: "link" },
-        { linkName: "Explore", handler: "#", type: "link" },
-        { linkName: "English", handler: "#", type: "link" },
-        { linkName: "Become a Seller", handler: "#", type: "link" },
-        { linkName: "Sign in", handler: handleLogin, type: "button" },
-        { linkName: "Join", handler: handleSignup, type: "button2" },
-    ];
-    const BurgerUsrData = [
-        {
-            name: "Fiverr Business",
-            callback: "#",
-            type: "link"
-        },
-        {
-            name: "Explore",
-            callback: "#",
-            type: "link"
-        },
-        {
-            name: "English",
-            callback: "#",
-            type: "link"
-        },{
-            name: "Become a Seller",
-            callback: "#",
-            type: "link"
-        },{
-            name: "Sign in",
-            callback: handleLogin,
-            type: "button"
-        },{
-            name: "Join",
-            callback: handleSignup,
-            type: "button2"
-        },
-    ];
-    const handleModeSwitch = async () => {
+    const handleOrdersNavigate = () => {
+        if (isSeller) router.push("/seller/orders");
+        else router.push("/buyer/orders")
+    }
+    const handleModeSwitch = () => {
         if (isSeller) {
             dispatch({ type: reducerCases.SWITCH_MODE })
-            await router.push("/buyer/orders")
+            router.push("/buyer/orders")
         } else {
             dispatch({ type: reducerCases.SWITCH_MODE })
-            await router.push("/seller")
+            router.push("/seller")
         }
     }
+    const logout = userInfo && router.pathname === "/profile" ? "Logout" : ""
     return (
         <React.Fragment>
             {isLoaded && (
@@ -238,26 +167,26 @@ const Navbar = () => {
                     <div className={`flex ${isFixed || userInfo ? 'opacity-100' : 'opacity-0'}`}>
                         <input
                             type="text"
-                            className={`w-1/2 p320:w-[150px] p200  p200:hidden p706:flex p200:ml-[30px] p200:-mr-[10px] lg:w-[350px] lg:h-[50px] py-2.5 px-4 border bg-white focus:outline-none ${!userInfo && !cookies.jwt ? "hidden" : ""}`}
+                            className={`w-1/2 mintf:w-[150px] p200  p200:opacity-0 maxtf:opacity-100 p200:ml-[30px] p200:-mr-[10px] minn:w-[350px] minn:h-[50px] py-2.5 px-4 border bg-white focus:outline-none ${!userInfo && !cookies.jwt ? "hidden" : ""}`}
                             value={searchData}
                             onChange={(e) => setSearchData(e.target.value)}
                             placeholder="What service are you looking for today?"
                         />
                         <button
-                            className={`bg-gray-900 py-1.5 p320:w-[45px] p200  p200:hidden p706:flex lg:h-[50px] lg:w-[65px] text-white w-12 md:w-16 xl:w-20 flex justify-center items-center ${!userInfo && !cookies.jwt ? "hidden" : ""}`}
-                            onClick={async () => {
+                            className={`bg-gray-900 py-1.5 mintf:w-[45px] p200  p200:opacity-0 maxtf:opacity-100 minn:h-[50px] minn:w-[65px] text-white w-12 md:w-16 xl:w-20 flex justify-center items-center ${!userInfo && !cookies.jwt ? "hidden" : ""}`}
+                            onClick={() => {
                                 setSearchData('');
-                                await router.push(`/search?q=${searchData}`);
+                                router.push(`/search?q=${searchData}`);
                             }}
                         >
-                            <IoSearchOutline className="fill-white text-white h-6 w-6 p320:text-[1px]" />
+                            <IoSearchOutline className="fill-white text-white h-6 w-6 mintf:text-[1px]" />
                         </button>
                     </div>
                     {!userInfo ? (
                         <ul className="flex gap-6 items-center w-full justify-end">
                             {links.map(({ linkName, handler, type }) => {
                                 return (
-                                    <li key={linkName} className={`${isFixed ? 'text-base' : ''} font-medium p908:block p200:hidden`}>
+                                    <li key={linkName} className={`${isFixed ? 'text-base' : ''} font-medium`}>
                                         {type === 'link' && <Link href={handler}>{linkName}</Link>}
                                         {type === 'button' && <button onClick={handler}>{linkName}</button>}
                                         {type === 'button2' && (
@@ -274,52 +203,58 @@ const Navbar = () => {
                                     </li>
                                 );
                             })}
-                            <RxHamburgerMenu className="p200:block p908:hidden" onClick={(e) => { (e.stopPropagation(), setIsBurgerUsrVisible(true))}} />
                         </ul>
                     ) : (
                         <ul className="flex items-center gap-6">
+                            {isSeller && (
+                                <li
+                                    className="cursor-pointer text-[#1dbf73] font-medium"
+                                    onClick={() => router.push("/seller/gigs/create")}
+                                >
+                                    Create Gig
+                                </li>
+                            )}
                             <li
-                                className="cursor-pointer text-[#1dbf73] font-medium p394:block p200:hidden"
+                                className="cursor-pointer text-[#1dbf73] font-medium"
                                 onClick={handleOrdersNavigate}
                             >
                                 Orders
                             </li>
-                            <li className="cursor-pointer font-medium p394:block p200:hidden" onClick={handleModeSwitch}>
+                            <li className="cursor-pointer font-medium" onClick={handleModeSwitch}>
                                 Switch To {isSeller ? 'Buyer' : 'Seller'}
                             </li>
-                            <RxHamburgerMenu onClick={(e) => {
-                                window.outerWidth <= 394 ? (e.stopPropagation(), setIsContextMenuVisible(true)) : ""
-                            }} className={"p394:hidden cursor-pointer"} />
-                            <li
-                                className="cursor-pointer -mr-2 md:mr-0"
-                                onClick={(e) => {
-                                    window.outerWidth >= 394 ? (e.stopPropagation(), setIsContextMenuVisible(true)) : ""
-                                }}
-                                title="Profile"
-                            >
-                                {userInfo.imageName ? (
-                                    <Image
-                                        src={userInfo.imageName}
-                                        alt="Profile"
-                                        width={40}
-                                        height={40}
-                                        className="rounded-full"
-                                    />
-                                ) : (
-                                    <div
-                                        className="bg-purple-500 h-10 w-10 flex items-center justify-center rounded-full relative">
-                                        <span className="text-xl text-white">{userInfo.email[0].toUpperCase()}</span>
-                                    </div>
-                                )}
-                            </li>
+                            <Link href={"http://localhost:3000/logout"} className="cursor-pointer font-sm text-red-700">
+                                {logout}
+                            </Link>
+                                <li
+                                    className="cursor-pointer -mr-2 md:mr-0"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setIsContextMenuVisible(true);
+                                    }}
+                                    title="Profile"
+                                >
+                                    {userInfo.imageName ? (
+                                        <Image
+                                            src={userInfo.imageName}
+                                            alt="Profile"
+                                            width={40}
+                                            height={40}
+                                            className="rounded-full"
+                                        />
+                                    ) : (
+                                        <div className="bg-purple-500 h-10 w-10 flex items-center justify-center rounded-full relative">
+                                            <span className="text-xl text-white">{userInfo.email[0].toUpperCase()}</span>
+                                        </div>
+                                    )}
+                                </li>
                         </ul>
                     )}
                     {isContextMenuVisible && <ContextMenu data={ContextMenuData} />}
-                    {isBurgerUsrVisible && <BurgerUsr data={BurgerUsrData} />}
                 </nav>
             )
             }
-        </React.Fragment>
+        </React.Fragment >
     )
 }
 
