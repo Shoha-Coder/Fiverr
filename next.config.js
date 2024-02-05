@@ -3,7 +3,7 @@ const nextConfig = {
   output: 'export',
   reactStrictMode: true,
   env: {
-    SERVER_URL: "http://fiverr-back.shoha-coder.uz",
+    SERVER_URL: "https://fiverr-back.shoha-coder.uz",
   },
   images: {
     remotePatterns: [
